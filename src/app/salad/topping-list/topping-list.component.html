@@ -1,0 +1,11 @@
+<mat-selection-list
+  [multiple]="false"
+  hideSingleSelectionIndicator
+  (selectionChange)="toppingChange($event)"
+>
+  <mat-list-option *ngFor="let topping of toppings" [value]="topping">
+    <mat-icon matListItemIcon>restaurant</mat-icon>
+    <div matListItemTitle>{{ topping.name }}</div>
+    <div matListItemLine>{{ topping.price }} €</div>
+  </mat-list-option>
+</mat-selection-list>

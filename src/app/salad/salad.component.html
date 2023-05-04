@@ -1,1 +1,24 @@
-<p>salad works!</p>
+<div class="content">
+  <div class="column">
+    <app-topping-list
+      *ngIf="allToppings$ | async as allToppings"
+      [toppings]="allToppings"
+      (chooseTopping)="chooseTopping($event)"
+    ></app-topping-list>
+  </div>
+  <div class="column">
+    <img
+      src="./assets/salad.jpeg"
+      alt="Ma super belle salade"
+      class="salad-img"
+    />
+    <h2>Your order :</h2>
+    <h3>{{ price$ | async | currency : "€" }}</h3>
+    <h4>{{ dressing$ | async }}</h4>
+    <ul>
+      <li *ngFor="let topping of toppings$ | async">
+        <span>{{ topping.name }} - {{ topping.price | currency : "€" }}</span>
+      </li>
+    </ul>
+  </div>
+</div>

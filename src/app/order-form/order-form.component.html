@@ -1,1 +1,17 @@
-<p>order-form works!</p>
+<p *ngIf="appState$ | async as appState">Order ID : {{ appState.orderId }}</p>
+
+<mat-form-field class="example-full-width">
+  <mat-label>What is your name :</mat-label>
+  <input matInput [(ngModel)]="name" />
+</mat-form-field>
+
+<p>
+  <button
+    mat-raised-button
+    color="primary"
+    [disabled]="!name"
+    (click)="startOrder()"
+  >
+    Build salad
+  </button>
+</p>

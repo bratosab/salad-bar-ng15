@@ -13,6 +13,7 @@ import { StoreRouterConnectingModule, routerReducer } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { FormsModule } from '@angular/forms';
 import { RouterEffects } from './core/router.effects';
+import { appReducer } from './core/app.reduer';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,7 @@ import { RouterEffects } from './core/router.effects';
     FormsModule,
     SharedMaterialModule,
     SaladModule,
-    StoreModule.forRoot({ router: routerReducer }, {}),
+    StoreModule.forRoot({ app: appReducer, router: routerReducer }, {}),
     EffectsModule.forRoot([RouterEffects]),
     StoreRouterConnectingModule.forRoot(),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() })
