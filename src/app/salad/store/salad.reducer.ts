@@ -1,4 +1,9 @@
-import { createReducer, on } from '@ngrx/store';
+import {
+  createFeatureSelector,
+  createReducer,
+  createSelector,
+  on,
+} from '@ngrx/store';
 import { ChooseTopping, SaveToppings } from './salad.actions';
 
 export interface SaladState {
@@ -29,6 +34,17 @@ export const saladReducer = createReducer(
   on(ChooseTopping, (state, action) => ({
     ...state,
     toppings: [...state.toppings, { name: action.name, price: action.price }],
-    price: state.price + action.price,
+    // price: state.price + action.price,
   }))
+);
+
+export const selectSalad = createFeatureSelector<SaladState>('salad');
+
+export const selectSaladPrice = createSelector(
+  selectSalad,
+  ({ price, toppings }) =>
+    price +
+    toppings.reduce((totalPrice, topping) => {
+      return totalPrice + topping.price;
+    }, 0)
 );

@@ -4,6 +4,7 @@
       *ngIf="allToppings$ | async as allToppings"
       [toppings]="allToppings"
       (chooseTopping)="chooseTopping($event)"
+      [test]="test"
     ></app-topping-list>
   </div>
   <div class="column">
@@ -12,13 +13,15 @@
       alt="Ma super belle salade"
       class="salad-img"
     />
-    <h2>Your order :</h2>
-    <h3>{{ price$ | async | currency : "€" }}</h3>
+    <h2 i18n>Your order :</h2>
+    <h3>{{ calculatedPrice$ | async | currency : "€" }}</h3>
     <h4>{{ dressing$ | async }}</h4>
     <ul>
       <li *ngFor="let topping of toppings$ | async">
-        <span>{{ topping.name }} - {{ topping.price | currency : "€" }}</span>
+        <!-- <span>{{ topping.name }} - {{ topping.price | currency : "€" }}</span> -->
+        <span> {{ getToppingText(topping) }}</span>
       </li>
     </ul>
   </div>
 </div>
+<button (click)="changeTest()">test change</button>

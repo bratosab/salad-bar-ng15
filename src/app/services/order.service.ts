@@ -6,6 +6,10 @@ import { NamePrice } from '../salad/store/salad.reducer';
 export class OrderService {
   constructor() {}
 
+  /**
+   * Fetch available toppings
+   * @returns An observable with an array of topping
+   */
   getToppings(): Observable<NamePrice[]> {
     return of([
       { name: 'Tomato', price: 1 },
